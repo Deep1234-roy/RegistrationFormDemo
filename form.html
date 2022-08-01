@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>HTML Starter</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="appForm.js"></script>
+        <style>
+            .header{
+                padding: 15px;
+                text-align: center;
+                background: #27bc1a;
+                color: white;
+                font-size: 20px;
+            }
+            .footer{
+                padding: 15px;
+                text-align: center;
+                background: #27bc1a;
+                color: white;
+                font-size: 20px;
+            }
+            .bodyPart{
+                height: 670px;
+                background: #5a06f6;
+                align-self: center;
+            }
+            .form-style{
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+            }
+            input[type=text], select {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+}
+        </style>
+    </head>
+    <body>
+        <div ng-app="MyApp" >
+            <div class="header">
+                <p style="font-size: 30px;font-weight:bold">DEEP CORPORATION LIMITED</p>
+            </div>
+            
+            <div class="bodyPart">
+                <br/>
+                <h3 style="text-align: center;color:rgb(240, 239, 247);font-size:26px; font-weight: bold;"><i><u>Registration Form</u></i></h3>
+            
+            <div ng-controller="RegController">
+                <div align="right">
+                    <a href="#" ng-click="viewUser()" style="color: white; font-size: 20px;">{{title}}</a>
+                  </div>
+                <form role="form" class="well" ng-hide="formShow">
+                    <div class="form-style">
+                        <label for="name"><b>First Name</b></label>
+                        <input type="text" placeholder="Your First Name" ng-model="newReg.fname" id="fname" class="form-control"/>
+                    </div>
+                    <div class="form-style">
+                        <label for="name"><b>Last Name</b></label>
+                        <input type="text" placeholder="Your Last Name" ng-model="newReg.lname" id="lname" class="form-control"/>
+                    </div>
+                    <div class="form-style">
+                        <label for="email"><b>Email</b></label>
+                        <input type="email" placeholder="Your Email ID" ng-model="newReg.email" id="email" class="form-control"/>
+                    </div>
+                    <div class="form-style">
+                        <label for="password"><b>Password</b></label>
+                        <input type="password" placeholder="Your Password" ng-model="newReg.pwd" id="pwd" class="form-control"/>
+                    </div>
+                    <div class="form-style">
+                        <label for="phone">Contact number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Your Contact No" ng-model="newReg.phone" class="form-control">
+                    </div>
+                    <input type="hidden" ng-model="newReg.id"/>
+                    <input type="button" class="btn btn-primary" ng-click="AddUser()" value="Submit">
+                </form>
+
+                <div>
+                    <h4><b> List Of Users : - </b></h4>
+                    <table ng-if="contacts.length" class = "table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr class="info">
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Mobile No</th>
+                            <th ng-if="!formShow">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="contact in contacts">
+                                <td>{{contact.fname}}</td>
+                                <td>{{contact.lname}}</td>
+                                <td>{{contact.email}}</td>
+                                <td>{{contact.phone}}</td>
+                                <td ng-if="!formShow">
+                                    <input type="button" class="btn btn-info" value="Edit" ng-click="editUser(contact.id)">&nbsp;
+                                    <input type="button" class="btn btn-danger" value="Delete" ng-click="deleteUser(contact.id)">&nbsp;
+                                    <!-- <input type="button" class="btn btn-primary" value="View" ng-click="viewUserDetails(contact.id)"> -->
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <div ng-hide="contacts.length > 0">No Users Found</div>
+                </div>
+
+                <!-- <div ng-hide="viewTable">
+                    <h4><b> User Information : - </b></h4>
+                    <table class = "table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr class="info">
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Mobile No</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="contact in contacts">
+                                <td>{{contact.fname}}</td>
+                                <td>{{contact.lname}}</td>
+                                <td>{{contact.email}}</td>
+                                <td>{{contact.pwd}}</td>
+                                <td>{{contact.phone}}</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div> -->
+
+
+
+            </div>
+            <div class="footer">
+                <h3>Welcome to @Deep Co.LTD</h3>
+            </div>
+            </div>
+
+            
+            
+
+        </div>        
+    </body>
+</html>
